@@ -29,7 +29,7 @@ import {
 } from './../components/styles';
 
 const Output = ({navigation, route}) => {
-    const url = 'https://cocosor.online/api'
+    const url = 'https://www.cocosor.online/api'
     const hey = route.params && route.params.key ? route.params.key : '';
 
     const [data, setData] = useState([]);
@@ -52,7 +52,19 @@ const Output = ({navigation, route}) => {
         const numericValue = text.replace(/[^0-9]/g, '');
         setOutput(numericValue);
     };
-    const formatDate = (inputDate) => {
+
+    useEffect(() => {
+        const getCurrentDate = () => {
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = currentDate.getDate().toString().padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+        setDate(getCurrentDate());
+    }, []);
+
+    /* const formatDate = (inputDate) => {
         const sanitizedInput = inputDate.replace(/[^0-9]/g, '');
     
         if (sanitizedInput.length >= 5) {
@@ -64,10 +76,10 @@ const Output = ({navigation, route}) => {
 
     const handleChange = (input) => {
         setDate(formatDate(input));
-    };
+    }; */
 
     const getOutput = () => {
-        fetch("https://cocosor.online/api/output")
+        fetch("https://www.cocosor.online/api/output")
         .then((res) => res.json())
         .then(resJson => {
             //console.log('data', resJson.output)
@@ -76,7 +88,7 @@ const Output = ({navigation, route}) => {
     }
 
     const addOutput = (name, date, output) => {
-        fetch("https://cocosor.online/api/addoutput", {
+        fetch("https://www.cocosor.online/api/addoutput", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +105,7 @@ const Output = ({navigation, route}) => {
             //console.log('data', resJson.output)
             setData(resJson.output);
             setName("");
-            setDate("");
+            //setDate("");
             setOutput("");
 
         }).catch(e => {console.log(e)})
@@ -124,7 +136,7 @@ const Output = ({navigation, route}) => {
         getOutput()
         setVisible(false);
         setName('')
-        setDate('')
+        //setDate('')
         setOutput('')
         setId(0)
     }
@@ -196,7 +208,7 @@ const Output = ({navigation, route}) => {
                 onDismiss={() => {
                     setVisible(false);
                     setName('');
-                    setDate('');
+                    //setDate('');
                     setOutput('');
                 }}
                 onSubmit={() => {
@@ -225,7 +237,8 @@ const Output = ({navigation, route}) => {
                     keyboardType="numeric"
                     maxLength={10}
                     value={date}
-                    onChangeText={(text) => handleChange(text)}
+                    style={{ display: 'none' }}
+                    //onChangeText={(text) => handleChange(text)}
                     mode="outlined"
                     />
                 <TextInput

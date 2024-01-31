@@ -38,7 +38,7 @@ const Signup = ({navigation}) => {
 
     const handleLogin = (credentials, {setSubmitting, resetForm}) => {
         handleMessage(null);
-        const apiUrl = 'https://cocosor-online.preview-domain.com/api/signup';
+        const apiUrl = 'https://www.cocosor.online/api/signup';
         axios
             .post(apiUrl, credentials, {
                 headers: {

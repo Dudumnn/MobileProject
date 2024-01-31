@@ -38,7 +38,7 @@ const Login = ({navigation}) => {
 
     const handleLogin = (credentials, {setSubmitting, resetForm}) => {
         handleMessage(null);
-        const apiUrl = 'https://cocosor-online.preview-domain.com/api/login';
+        const apiUrl = 'https://www.cocosor.online/api/login';
         axios
             .post(apiUrl, credentials, {
                 headers: {
@@ -122,13 +122,13 @@ const Login = ({navigation}) => {
                                 </StyledButton>
                             )}
 
-                            <Line />
+                            {/*<Line />
                             <SignupLink>
                                 <SignupText>Don't have an account already? </SignupText>
                                 <TextLink onPress={() => navigation.navigate("Signup")}>
                                     <LinkContent>Signup</LinkContent>
                                 </TextLink>
-                            </SignupLink>
+                            </SignupLink>*/}
                         </StyledFormArea>)}
                     </Formik>
                 </InnerContainer>

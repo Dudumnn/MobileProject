@@ -8,7 +8,7 @@ const {primary, brand, darkLight} = Colors;
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Profile = ({navigation}) => {
-    const url = 'https://cocosor.online/api';
+    const url = 'https://www.cocosor.online/api';
     const [userID, setUser] = useState('');
     AsyncStorage.getItem("user")
     .then(savedID => {
